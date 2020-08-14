@@ -1,7 +1,7 @@
 import React from 'react';
 import Item from './Item';
 
-const url = "http://localhost:8080"
+const url = "http://localhost:8080/items"
 
 class ItemList extends React.Component{
     constructor(props) {
@@ -11,7 +11,8 @@ class ItemList extends React.Component{
         };
     }
 
-    getItems() {
+    getItems()
+    {
         fetch(url).then(result => {
             return result.json();
         }).catch(error => {
@@ -21,16 +22,7 @@ class ItemList extends React.Component{
         })
     }
 
-    setList(json) {
-        const list = {};
-        json.forEach(item => {
-            const newItem = Object.assign({}, item);
-            list.push(newItem);
-        })
-    }
-
     render() {
-        // this.getItems();
         return (
             <Item />
         )
