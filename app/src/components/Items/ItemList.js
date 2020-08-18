@@ -1,5 +1,7 @@
 import React from 'react';
 import Item from './Item';
+import {Col, Row} from "antd";
+import 'antd/dist/antd.css';
 
 const url = "http://localhost:8080/items"
 
@@ -22,14 +24,18 @@ class ItemList extends React.Component {
   }
 
   render() {
-    console.log(this.state.itemList);
     return (
       this.state.itemList.map((key, index) => {
         return (
+
+            <Col span={6}>
           <Item name={this.state.itemList[index].name}
-                pics={this.state.itemList[index].picUrl}
+                pics={this.state.itemList[index].pics}
                 price={this.state.itemList[index].price}
-          />)
+          />
+            </Col>
+
+          )
 
       })
     )

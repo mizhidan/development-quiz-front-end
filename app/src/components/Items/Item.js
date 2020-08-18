@@ -1,5 +1,7 @@
 import React from 'react';
-import add from '../../assets/add.svg';
+import './Item.css';
+import {Button} from "antd";
+import 'antd/dist/antd.css';
 
 
 class Item extends React.Component {
@@ -10,12 +12,15 @@ class Item extends React.Component {
 
     render() {
         return (
-            <div className="single-item">
-                <img src={this.props.pics} alt="item picture" />
-                <p>{this.props.name}</p>
-                <p>单价：{this.props.price}元/瓶</p>
-                <img src={add} alt="add item" />
-            </div>
+
+              <div className="single-item">
+                <img src={this.props.pics} className="item-pic" alt="item picture" />
+                <div className="item-info">
+                  <h2>{this.props.name}</h2>
+                  <p>单价：{this.props.price}元/瓶</p>
+                </div>
+                <Button type="default" shape="circle" className="add-button">+</Button>
+              </div>
         )
     }
 }

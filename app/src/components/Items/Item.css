@@ -1,0 +1,20 @@
+.single-item {
+    margin: 50px;
+    width: 250px;
+    border: 1px solid rgba(1,1,1,0.2);
+}
+
+.item-pic {
+    width: 248px;
+    height: 248px;
+}
+
+.add-button {
+    position: relative;
+    top: -10px;
+    right: -200px;
+}
+
+.item-info {
+    margin: 10px;
+}
