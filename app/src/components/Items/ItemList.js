@@ -28,7 +28,7 @@ class ItemList extends React.Component {
       this.state.itemList.map((key, index) => {
         return (
 
-            <Col span={6}>
+            <Col span={6} key={index}>
           <Item name={this.state.itemList[index].name}
                 pics={this.state.itemList[index].pics}
                 price={this.state.itemList[index].price}

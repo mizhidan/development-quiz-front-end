@@ -16,7 +16,6 @@ function App() {
           <ItemList/>
         </Row>
       </div>
-
     </div>
   );
 }
