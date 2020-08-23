@@ -40,8 +40,10 @@
 
 .item-list {
   border: 30px solid rgba(1,1,1,0.05);
+  background-color: white;
 }
 
 .table {
   border: 30px solid rgba(1,1,1,0.05);
+  background-color: white;
 }
