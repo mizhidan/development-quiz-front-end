@@ -18,7 +18,9 @@ class Item extends React.Component {
       })
       const data = {
         itemName: item,
-        itemNumber: 1
+        itemNumber: 1,
+        price: this.props.price,
+        itemUnit: this.props.itemUnit
       }
       const url = 'http://localhost:8080/orders';
       this.addOrder(url,data).then(r => {});
@@ -45,7 +47,7 @@ class Item extends React.Component {
                 <img src={this.props.pics} className="item-pic" alt="item picture" />
                 <div className="item-info">
                   <h2>{this.props.name}</h2>
-                  <p>单价：{this.props.price}元/瓶</p>
+                  <p>单价：{this.props.price}元/{this.props.itemUnit}</p>
                 </div>
                 <Button
                   type="default"

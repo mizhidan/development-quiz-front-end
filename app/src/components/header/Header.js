@@ -2,6 +2,9 @@ import React from 'react';
 import { BrowserRouter, Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import { HomeOutlined,ShoppingCartOutlined,PlusOutlined } from '@ant-design/icons';
 import {Menu} from "antd";
+import ItemList from "../Items/ItemList";
+import AddItem from "../AddItem/AddItem";
+import Orders from "../Orders/Orders";
 
 class Header extends React.Component {
     constructor(props) {
@@ -13,7 +16,6 @@ class Header extends React.Component {
     }
 
   handleClick = e => {
-    console.log('click ', e);
     this.setState({ current: e.key });
   };
 
@@ -26,12 +28,17 @@ class Header extends React.Component {
                 <NavLink className="nav-link" exact to="/">商城</NavLink>
               </Menu.Item>
               <Menu.Item key="orders" icon={<ShoppingCartOutlined />} onClick={this.handleClick}>
-                <NavLink className="nav-link" exact to="/order">订单</NavLink>
+                <NavLink className="nav-link" exact to="/orders">订单</NavLink>
               </Menu.Item>
               <Menu.Item key="add-item" icon={<PlusOutlined />} onClick={this.handleClick}>
-                <NavLink className="nav-link" exact to="/additem">添加商品</NavLink>
+                <NavLink className="nav-link" exact to="/add-item">添加商品</NavLink>
               </Menu.Item>
             </Menu>
+            <Switch>
+              <Route exact path='/' component={ItemList}/>
+              <Route exact path='/orders' component={Orders}/>
+              <Route exact path='/add-item' component={AddItem}/>
+            </Switch>
             </BrowserRouter>
         )
     }

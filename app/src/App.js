@@ -11,11 +11,6 @@ function App() {
   return (
     <div>
       <Header/>
-      <div className="item-list">
-        <Row>
-          <ItemList/>
-        </Row>
-      </div>
     </div>
   );
 }
