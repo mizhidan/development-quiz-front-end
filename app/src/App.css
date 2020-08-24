@@ -47,3 +47,12 @@
   border: 30px solid rgba(1,1,1,0.05);
   background-color: white;
 }
+
+.add-items {
+  border: 30px solid rgba(1,1,1,0.05);
+}
+
+footer {
+  background-color: rgba(1,1,1,0.05);
+  text-align: center;
+}

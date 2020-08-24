@@ -1,15 +1,19 @@
 import React from "react";
-import { Button,Form } from "antd";
+import {Button, Form, notification} from "antd";
 import {Input} from "antd";
+import "./AddItem.css";
 
 const url="http://localhost:8080/items"
+
+
 
 class AddItem extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      product: {}
+      product: {},
+      isFullFilled: false
     };
 
   }
@@ -23,14 +27,31 @@ class AddItem extends React.Component {
       }
     }
     fetch(url,option)
-      .then(response => response.json())
-      .catch(error => console.log(error));
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("bad request");
+        }
+      })
+      .catch(error => this.openNotification());
+  }
+
+  openNotification = () => {
+    notification.open({
+      message: '添加订单失败',
+      description:
+        '商品名称已存在，请输入新的商品名称',
+    });
+  }
+
+  handleValidate() {
+
   }
 
   render() {
     return (
-      <div>
-        <Form layout="vertical" onFinish={this.handleSubmit}>
+      <div className="add-items">
+        <h1>添加商品</h1>
+        <Form layout="vertical" onFinish={this.handleSubmit.bind(this)} onChange={this.handleValidate.bind(this)}>
           <Form.Item
             label="名称"
             name="name"
@@ -75,7 +96,7 @@ class AddItem extends React.Component {
             <Input placeholder="图片"/>
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType={"submit"}>Submit</Button>
+            <Button type="primary" htmlType={"submit"} disabled={this.state.isFullFilled}>提交</Button>
           </Form.Item>
         </Form>
       </div>

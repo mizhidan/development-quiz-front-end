@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, NavLink, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, NavLink, Switch } from 'react-router-dom';
 import { HomeOutlined,ShoppingCartOutlined,PlusOutlined } from '@ant-design/icons';
 import {Menu} from "antd";
 import ItemList from "../Items/ItemList";
@@ -13,6 +13,10 @@ class Header extends React.Component {
           theme: 'dark',
           current: 'mall'
         };
+    }
+
+    componentDidMount() {
+      console.log(this.props)
     }
 
   handleClick = e => {

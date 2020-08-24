@@ -1,0 +1,10 @@
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.ant-row {
+    width: 96%;
+    margin-left: 2%;
+}

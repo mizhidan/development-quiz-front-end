@@ -1,15 +1,22 @@
 import React from "react";
-import {Button, Table} from 'antd';
+import {Button,ConfigProvider, Table, notification} from 'antd';
 
 import 'antd/dist/antd.css';
 
 const url = "http://localhost:8080/orders"
+
+const customizeRenderEmpty = () => (
+  <div style={{ textAlign: 'center' }}>
+    <span>暂无订单，返回</span><a href="/">商城页面</a><span>购买</span>
+  </div>
+);
 
 class Orders extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       dataSource: [],
+      current: 'orders',
     };
   }
 
@@ -37,30 +44,32 @@ class Orders extends React.Component {
       },
     };
     fetch(url+"/"+id, option)
-      .then(response => response.json())
-      .catch(error => console.log(error))
-      .then(() => this.deleteRow(id))
+      .catch(() =>
+        this.openNotification())
+      .then(() => this.deleteRow())
   }
 
-  deleteRow(id) {
-    this.state.dataSource.forEach((item, index) => {
-      if (item.id === id) {
-        delete this.state.dataSource[index];
-      }
-    })
+  deleteRow() {
     fetch(url)
       .then(result => {
         return result.json()
       })
       .catch(error => {
-        console.log(error);
+        console.log(error)
       })
       .then(json => {
         this.setState({
           dataSource: json
         })
-        console.log(this.state.dataSource)
       })
+  }
+
+  openNotification = () => {
+    notification.open({
+      message: '订单删除失败',
+      description:
+        '订单删除失败，请稍后再试',
+    });
   }
 
   render() {
@@ -95,14 +104,14 @@ class Orders extends React.Component {
     ]
     return (
       <div className="table">
+        <ConfigProvider renderEmpty={customizeRenderEmpty}>
         <Table
           dataSource={this.state.dataSource}
           columns={columns}
           pagination={false}
-          locale={
-            {emptyText: '暂无订单，返回商城页面继续购买'}
-          }
+          key="order-table"
         />;
+        </ConfigProvider>
       </div>
     );
   }
